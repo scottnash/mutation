@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+// CONSTS
 const SET_ARRAY = "SET_ARRAY";
 const MUTATE_ARRAY ="MUTATE_ARRAY";
 const UPDATE_ARRAY = "UPDATE_ARRAY";
 
+
+/// ACTIONS
 const setDataArray = (dataArray)=> {
   return {
     type: SET_ARRAY,
@@ -11,21 +13,22 @@ const setDataArray = (dataArray)=> {
 }
 
 const updateState = (index, value)=> {
-  return {
+  return Promise.resolve({
     type: UPDATE_ARRAY,
     index,
     value
-  };
+  });
 }
 
 const mutateState = (index, value)=> {
-  return {
+  return Promise.resolve({
     type: MUTATE_ARRAY,
     index,
     value
-  };
+  });
 }
 
+// REDUCER
 const dataArray = (state = [], action) =>{
   switch (action.type){
     case SET_ARRAY:
@@ -52,10 +55,8 @@ const dataArray = (state = [], action) =>{
     }
 }
 
-const getArrayData = (state) => state.dataArray || [];
+// SELECTOR
+const getArrayData = (state) => state || [];
 
-const combinedReducers = combineReducers({
-  dataArray
-});
 
-export { combinedReducers, setDataArray, getArrayData, updateState, mutateState };
+export { dataArray, setDataArray, getArrayData, updateState, mutateState };

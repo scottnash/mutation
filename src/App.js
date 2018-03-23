@@ -70,11 +70,18 @@ class App extends Component {
   }
 
   updateState = () => {
-    this.props.updateState( 8, 6);
+    console.log(this.props.getArrayData);
+    this.props.updateState( 8, 6).then( ()=> {
+      console.log(this.props.getArrayData);
+    });
+
   }
 
   mutateState = () => {
-    this.props.mutateState( 8, 6);
+    console.log(this.props.getArrayData);
+    this.props.mutateState( 8, 6).then( ()=> {
+      console.log(this.props.getArrayData);
+    });
   }
 }
 
